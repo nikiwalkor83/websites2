@@ -1,0 +1,34 @@
+---
+title: "Billboard Graphic"
+---
+
+```{r}
+#| message: false
+
+library(tidyverse)
+```
+
+```{r}
+#| warning: false
+
+billboard |>
+  pivot_longer(
+    cols = starts_with("wk"),
+    names_to = "week",
+    values_to = "rank",
+    names_prefix = "wk",
+    names_transform = as.integer,
+    values_drop_na = TRUE
+  ) |>
+  ggplot(aes(x = week, y = rank, group = track)) +
+  geom_line(alpha = 0.25, color = "midnightblue") +
+  scale_y_reverse(breaks = c(1, 25, 50, 75, 100)) +
+  labs(
+    title = "Billboard Hot 100 Song Trajectories (2000)",
+    subtitle = "Weekly rank progression for songs on the chart",
+    x = "Week on Chart",
+    y = "Chart Rank",
+    caption = "Source: tidyr::billboard"
+  ) +
+  theme_minimal()
+```
