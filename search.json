@@ -5,12 +5,5 @@
     "title": "About",
     "section": "",
     "text": "About this site"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Billboard Graphic",
-    "section": "",
-    "text": "library(tidyverse)\n\n\nbillboard |&gt;\n  pivot_longer(\n    cols = starts_with(\"wk\"),\n    names_to = \"week\",\n    values_to = \"rank\",\n    names_prefix = \"wk\",\n    names_transform = as.integer,\n    values_drop_na = TRUE\n  ) |&gt;\n  ggplot(aes(x = week, y = rank, group = track)) +\n  geom_line(alpha = 0.25, color = \"midnightblue\") +\n  scale_y_reverse(breaks = c(1, 25, 50, 75, 100)) +\n  labs(\n    title = \"Billboard Hot 100 Song Trajectories (2000)\",\n    subtitle = \"Weekly rank progression for songs on the chart\",\n    x = \"Week on Chart\",\n    y = \"Chart Rank\",\n    caption = \"Source: tidyr::billboard\"\n  ) +\n  theme_minimal()"
   }
 ]
